@@ -10,6 +10,7 @@ defmodule Samly.Mixfile do
       app: :samly,
       version: @version,
       description: @description,
+      elixirc_paths: elixirc_paths(Mix.env()),
       docs: docs(),
       package: package(),
       elixir: "~> 1.10",
@@ -24,6 +25,9 @@ defmodule Samly.Mixfile do
       extra_applications: [:logger, :eex]
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps() do
