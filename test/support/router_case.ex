@@ -25,7 +25,11 @@ defmodule Samly.RouterCase do
         id: "idp1",
         sp_id: "sp1",
         base_url: "http://samly.howto:4003/sso",
-        metadata_file: "test/data/idp_metadata.xml"
+        metadata_file: "test/data/simplesaml_idp_metadata.xml",
+        sign_requests: false,
+        sign_metadata: false,
+        signed_assertion_in_resp: false,
+        signed_envelopes_in_resp: false
       }
     end
   end

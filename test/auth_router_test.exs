@@ -13,10 +13,10 @@ defmodule Samly.AuthRouterTest do
   end
 
   test "GET on signin uri returns saml html form with the given target url" do
-    conn(:get, "/signin/idp1", target_url: "/Glossary")
+    conn(:get, "/signin/idp1", target_url: "/Home")
     |> init_test_session(%{})
     |> AuthRouter.call([])
-    |> assert_initial_saml_form("%2FGlossary")
+    |> assert_initial_saml_form("%2FHome")
   end
 
   test "POST on signin uri returns form that will be submited to idp" do
