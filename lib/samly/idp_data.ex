@@ -89,6 +89,13 @@ defmodule Samly.IdpData do
 
   @type id :: binary()
 
+  @spec load_providers(map(), map()) :: %IdpData{}
+  def from_config(sp_config, idp_config) do
+    service_providers = Samly.SpData.load_providers([sp_config])
+    config_map = load_providers([idp_config], service_providers)
+    config_map[idp_config.id]
+  end
+
   @spec load_providers([map], %{required(id()) => %SpData{}}) ::
           %{required(id()) => %IdpData{}} | no_return()
   def load_providers(prov_config, service_providers) do
