@@ -3,9 +3,8 @@ defmodule Samly.ConfigBehaviourTest do
   alias Samly.SPRouter
 
   def get_idp(_conn, idp_id) do
-    service_providers = Samly.SpData.load_providers([@sp_config])
-    config = Samly.IdpData.load_providers([@idp_config], service_providers)
-    config[idp_id]
+    assert idp_id == @idp_config.id
+    Samly.IdpData.from_config(@sp_config, @idp_config)
   end
 
   setup do
