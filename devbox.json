@@ -21,8 +21,8 @@
         "scripts": {
             "test": ["mix test --warnings-as-errors"],
             "test.watch": ["mix test.watch --warnings-as-errors"],
-            "format": ["format --check-formatted"],
-            "ci": ["mix deps.get && mix ci"]
+            "format": ["format"],
+            "ci": ["mix ci"]
         }
     }
 }
