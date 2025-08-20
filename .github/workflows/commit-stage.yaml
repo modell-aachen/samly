@@ -1,0 +1,27 @@
+name: Elixir CI
+on: [pull_request]
+
+permissions:
+    contents: read
+
+jobs:
+    elixir-test:
+        name: Test Elixir
+        runs-on: depot-ubuntu-latest
+        steps:
+            - name: checkout repo
+              uses: Wandalen/wretry.action@v3.8.0
+              with:
+                  action: actions/checkout@v4
+                  attempt_limit: 3
+                  # attempt_delay in ms
+                  attempt_delay: 5000
+
+            - name: Setup elixir build
+              uses: ./.github/actions/setup-elixir-build
+              with:
+                  environment: test
+                  version-file: .tool-versions
+
+            - name: Run Qwiki Elixir ci checks
+              run: ./run-elixir ci

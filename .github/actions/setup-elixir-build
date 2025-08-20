@@ -1,0 +1,28 @@
+name: "Setup Elixir build"
+description: "Setup an Elixir build environment"
+inputs:
+  environment:
+    description: "The mix environment to use (dev, test, prod)"
+    required: true
+  version-file:
+    description: The .tool-versions file defining the Elixir and OTP versions to use
+runs:
+  using: "composite"
+  steps:
+  - name: Setup elixir
+    uses: erlef/setup-beam@v1
+    with:
+      version-type: strict
+      version-file: ${{ inputs.version-file }}
+
+  - name: Install dependencies
+    shell: bash
+    env:
+      MIX_ENV: ${{ inputs.environment }}
+    run: mix deps.get
+
+  - name: Compiles without warnings
+    shell: bash
+    env:
+      MIX_ENV: ${{ inputs.environment }}
+    run: mix compile
