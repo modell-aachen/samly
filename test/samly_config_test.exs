@@ -29,7 +29,7 @@ defmodule SamlyConfigTest do
     Provider.refresh_providers()
 
     sps = Application.get_env(:samly, :service_providers)
-    assert sps == %{"sp1" => Samly.SpData.load_provider(@sp_config)}
+    assert sps == %{"sp2" => Samly.SpData.load_provider(@sp_config)}
 
     assert Application.get_env(:samly, :identity_providers) ==
              %{"idp1" => Samly.IdpData.load_provider(@idp_config, sps)}
